@@ -17,8 +17,8 @@ COPY README.md .
 # Note: I might advocate that there be a seperate requirements.txt with fixed dependency versions
 #       just for the docker container. i.e., == only, no >= etc. That way the container serves as
 #       a specific reference implementation that is "guaranteed" to function as intended. 
-RUN python setup.py egg_info \
-    && grep -v -e dataclasses -e '\[:python_version' src/sqlfluff.egg-info/requires.txt > requires.txt
+RUN python setup.py egg_info
+RUN grep -v -e dataclasses -e '\[:python_version' src/sqlfluff.egg-info/requires.txt > requires.txt
 RUN pip install -r requires.txt
 
 COPY src ./src
